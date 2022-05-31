@@ -1,0 +1,133 @@
+//файл Book.h
+
+#ifndef BOOK_H
+#define BOOK_H
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+class Book
+{
+    string title;
+    int publishing_year;
+    string author;
+    double cost;
+
+    public:
+    Book();
+    Book(string t, int p, double c);
+    Book(string t, int p=2004);
+    Book(const Book &src);
+    ~Book();
+
+    void setTitle(string t);
+    string getTitle();
+
+    void setPublishing_year(int p);
+    int getPublishing_year();
+
+    void setCost(double p);
+    double getCost();
+
+    void showBook();
+};
+
+#endif // BOOK_H
+
+//файл book.cpp
+
+#include "Book.h"
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+Book::Book():title("Title"),publishing_year(0),cost(0.0)
+    {
+      cout<<"Екземпляр класу створено конструкт за замовчуванням\n";
+    }
+Book::Book (string t, int p, double c)
+    {
+      title=t; publishing_year=p;
+      if (c <1000)
+      cost = c;
+      else
+      cost = 0.0;
+      cout<<"Екземпляр класу створено конструктором з параметрами\n";
+    }
+
+Book::Book(string t, int p):title(t),publishing_year(p)
+    {
+        do  {
+        cout << "Введите цену для книги " << title << " меньше 1000 : ";
+        cin >> cost;
+    }
+        while (cost >=1000);
+        cout<<"Екземпляр класу створено конструктором з параметрами со списком иниц.\n";
+    }
+
+Book::Book (const Book &src)
+    {
+       cout<<"Конструктор копіювання\n";
+        title=src.title;
+        publishing_year=src.publishing_year;
+        cost=src.cost;
+    }
+
+Book::~Book()
+    {
+        cout<<"Працює деструктор\n";
+    }
+void Book::setTitle(string t)
+    {
+     title=t;
+    }
+  string Book::getTitle()
+    {
+     return title;
+    }
+  void Book::setPublishing_year(int p)
+    {
+     publishing_year = p;
+    }
+
+  void Book::setCost(double c)
+    {
+     cost = c;
+    }
+  double Book::getCost()
+    {
+     return cost;
+    }
+  void Book::showBook()
+    {
+     cout<<"Book: "<<title<<"\t"<<"Publishing year: "<<publishing_year<<"\t"<<"Price:" << cost <<endl;
+    }
+ //файл main.cpp
+
+#include <iostream>
+#include "Book.h"
+
+using namespace std;
+
+int main()
+{
+   setlocale(LC_ALL,"Russian");
+    Book book1;
+    book1.showBook();
+    Book book2 ("Зелёная миля", 1996, 1100);
+    book2.showBook();
+    Book book3 ("Сияние",1977);
+    book3.showBook();
+    Book library[5]={Book ("Оно",1986), Book ("Чужак",2018),
+    Book ("Институт",2019)};
+     for (int i=0;i<5;i++)
+     {
+         library[i].showBook();
+     }
+     Book book4 = book3;
+     book4.showBook();
+    return 0;
+}
+
