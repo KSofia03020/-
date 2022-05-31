@@ -1,0 +1,105 @@
+//file Route.h
+
+#ifndef ROUTE_H
+#define ROUTE_H
+#include<cstring>
+#include<string>
+#include<iostream>
+
+using namespace std;
+
+class Route
+{
+    private:
+        char direction[30];
+        int price;
+        int distance;
+        char date [30];
+    public:
+        void setDirection(char *d);
+        void getDirection(char *d);
+
+        void setPrice(int p);
+        float getPrice();
+
+        void setDistance(int d);
+        float getDistance();
+
+        void setDate(char *d);
+        void getDate(char *d);
+
+        void showRoute();
+
+};
+
+//file Route.cpp
+
+#endif // ROUTE_H
+
+#include "Route.h"
+
+using namespace std ;
+
+void Route::setDirection(char *d)
+{
+    strcpy (direction,d);
+}
+void Route::getDirection(char *d)
+{
+    strcpy (d,direction);
+}
+void Route::setPrice(int p)
+{
+    price = p;
+}
+float Route::getPrice()
+{
+    return price;
+}
+void Route::setDistance(int d)
+{
+    distance = d;
+}
+float Route::getDistance()
+{
+    return distance;
+}
+void Route::setDate(char *d)
+{
+    strcpy (date,d);
+}
+void Route::getDate(char *d)
+{
+    strcpy (d,date);
+}
+
+//file main.cpp
+
+#include <iostream>
+#include "Route.h"
+
+using namespace std;
+
+int main()
+{
+    Route route;
+    char direction[30]={"to Kharkiv"};
+    char date[30]={"20/09/22"};
+    route.setDirection(direction);
+    route.setPrice(300);
+    route.setDistance(140);
+    route.setDate(date);
+
+    char new_direction[30];
+    route.getDirection(new_direction);
+    char new_date[30];
+    route.getDate(new_date);
+
+    cout<<"Route"<<endl;
+    cout<<"Direction : "<<new_direction<<endl;
+    cout<<"Price :"<<route.getPrice()<<endl;
+    cout<<"Distance :"<<route.getDistance()<<endl;
+    cout<<"Date : "<<new_date<<endl;
+    return 0;
+}
+
