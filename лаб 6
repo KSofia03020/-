@@ -1,0 +1,66 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Polygon { // Базовий клас
+public:
+    virtual double getPerimeter()=0; //оголошення віртуальної фунції
+    virtual void showPolygonType()=0;
+
+};
+
+class Triangle : public Polygon //перший похідний клас Трикутник
+{ private :
+    double side1;
+    double side2;
+    double side3;
+public:
+    Triangle (double s1 , double s2 , double s3) : side1(s1) ,side2 (s2) ,side3 (s3)
+    {
+
+    }
+    double getPerimeter() override
+    {
+        return side1 + side2 + side3;
+    }
+    void showPolygonType()
+    {
+        cout << "Triangle" << endl;
+    }
+
+};
+ class Trapezoid : public Polygon //другий похідний клас Трапеція
+ {
+   private :
+       double side1;
+       double side2;
+       double side3;
+       double side4;
+
+   public :
+     Trapezoid (double s1 , double s2 , double s3 , double s4 ) : side1(s1) ,side2 (s2) ,side3 (s3), side4 (s4)
+     {
+
+     }
+       double getPerimeter() override // override указывает , что функция должна преопределять вирт.функцию , объявленную в базовом классе.
+       {
+           return side1 + side2 + side3 + side4;
+       }
+       void showPolygonType()
+      {
+        cout << "Trapezoid" << endl;
+      }
+
+ };
+  int main ()
+  {
+      Triangle triangle (10,20,30);
+      Trapezoid trapezoid (2, 5 ,7 ,10);
+
+      cout << "Triangle perimeter:" << triangle.getPerimeter()<< endl;
+      cout << "Trapezoid perimeter:" << trapezoid.getPerimeter()<< endl;
+      return 0;
+
+
+  }
